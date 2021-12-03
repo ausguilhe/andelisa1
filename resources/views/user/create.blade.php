@@ -32,30 +32,36 @@
 
 @section('content')
 
-    {{ Form::open(array('url' => '/user/create')) }}
+<form action="{{ route('user.create') }}" method="post" enctype="multipart/form">
+    @csrf
+<div class="mb-3">
+    <label for="" class="form-label">Nome</label>
+    <input id="name" name="name" type="text" class="form-control" tabindex="1">    
+</div>
+<div class="mb-3">
+    <label for="" class="form-label">E-mail</label>
+<input id="email" name="email" type="text" class="form-control" tabindex="1">    
+</div>
+<div class="mb-3">
+    <label for="" class="form-label">Senha</label>
+<input id="password" name="password" type="password" class="form-control" tabindex="1">    
+</div>
+<div class="mb-3">
+    <label for="" class="form-label">Confirmar senha</label>
+<input id="password" name="password" type="password" class="form-control" tabindex="1">    
+</div>
 
-    {{ Form::label('nome', 'Nome') }}
-    {{ Form::text('nome', null) }}
-    <br/>
-    {{ Form::label('email', 'E-mail') }}
-    {{ Form::text('email', null) }}
-    <br/>
-    {{ Form::label('password', 'Senha') }}
-    {{ Form::password('password', null) }}
-    <br/>
-    {{ Form::label('password', 'Confirme senha') }}
-    {{ Form::password('password', null) }}
-    <br/>
-    {{ Form::submit('Enviar') }}
+<a href="{{ URL::to('user/') }}" class="btn btn-secondary">Voltar</a>
+<button type="submit" class="btn btn-primary">Gravar</button>
+</form>
 
-    {{ Form::close() }}
+@stop
 
-    @stop
-
-    @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-    @stop
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
         
-    @section('js')
-        <script> console.log('Hi!'); </script>
-    @stop
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+    

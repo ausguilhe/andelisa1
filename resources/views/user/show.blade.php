@@ -11,7 +11,7 @@
     @section('content')
 
     <p>ID:                          {{ $user->id}}</p>
-    <p>Nome:                        {{ $user->nome}}</p>
+    <p>Nome:                        {{ $user->name}}</p>
     <p>E-mail:                      {{ $user->documento}}</p>
     <p>Password:                    {{ $user->endereco}}</p>
     <p>Criação                      {{ Carbon\Carbon::parse($user->create_at)->format('d/m/y H:i') }}</p>

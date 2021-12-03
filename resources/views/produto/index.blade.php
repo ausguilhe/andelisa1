@@ -28,6 +28,7 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
+        <th scope="col">Código de barras</th>
         <th scope="col">Categoria</th>
         <th scope="col">Nome</th>
         <th scope="col">Descrição</th>
@@ -43,6 +44,7 @@
 
                 <tr>
                     <td>{{ $value->id }}</td>
+                    <td>{{ $value->codigo_barras }}</td>
                     <td>{{ $value->categoria->nome }}</td>
                     <td>{{ $value->nome }}</td>
                     <td>{{ $value->descricao }}</td>

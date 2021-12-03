@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class userController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class userController extends Controller
     public function index()
     {
         // listar todos os users
-        $users = user::orderBy('nome', 'ASC')->get();
+        $users = user::orderBy('name', 'ASC')->get();
         //dd($users);
         return view('user.index', ['users' => $users]);
     }
@@ -43,8 +43,8 @@ class userController extends Controller
         //dd($data);
 
         $message = [
-            'nome.required' => 'O campo nome é obrigatório',
-            'nome.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
+            'name.required' => 'O campo nome é obrigatório',
+            'name.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
             'email.required' => 'O campo email é obrigatório',
             'email.email' => 'Este email não é válido',
             'password.required' => 'O campo password é obrigatório',
@@ -52,14 +52,14 @@ class userController extends Controller
         ];
 
         $validateData = $request->validate([
-            'nome'         => 'required|min:2',
+            'name'         => 'required|min:2',
             'email'        => 'required',
             'password'     => 'required',
             //'password'     => 'required',
         ], $message);
 
         $user = new user;
-        $user->nome          =$request->nome;
+        $user->name          =$request->name;
         $user->email         =$request->email;
         $user->password      =$request->password;
         //$user->password      =$request->password;
@@ -103,8 +103,8 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         $message = [
-            'nome.required' => 'O campo nome é obrigatório',
-            'nome.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
+            'name.required' => 'O campo nome é obrigatório',
+            'name.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
             'email.required' => 'O campo email é obrigatório',
             'email.email' => 'Este email não é válido',
             'password.required' => 'O campo password é obrigatório',
@@ -112,14 +112,14 @@ class userController extends Controller
         ];
 
         $validateData = $request->validate([
-            'nome'         => 'required|min:2',
+            'name'         => 'required|min:2',
             'email'        => 'required',
             'password'     => 'required',
             //'password'     => 'required',
         ], $message);
 
         $user = user::findOrFail($id);
-        $user->nome          =$request->nome;
+        $user->name          =$request->name;
         $user->email         =$request->email;
         $user->password      =$request->password;
         //$user->password      =$request->password;

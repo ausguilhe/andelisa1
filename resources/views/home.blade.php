@@ -7,7 +7,10 @@
 @stop
 
 @section('content')
-    <p>Este é o inicio do sistema! Seja bem vindo!</p>
+
+    <h1>PROJETO AVANT - COLÉGIO SANTO INÁCIO</h1>
+    <p>Este é o começo do sistema</p>
+    
 @stop
 
 @section('css')

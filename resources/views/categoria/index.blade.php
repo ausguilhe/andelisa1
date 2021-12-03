@@ -39,9 +39,11 @@
     <tr>
             <td>{{ $value-> id }}</td>
             <td>{{ $value-> nome }}</td>
-        
+            <td>
+                <a href="{{ URL::to('categoria/' . $value->id) }}" class="btn btn-info">Visualizar</a>
+            </td>
         <td>
-            <a href="{{ URL::to('categoria/' . $value->id . '/edit') }}" class="btn btn-info">Editar</a>
+            <a href="{{ URL::to('categoria/' . $value->id . '/edit') }}" class="btn btn-warning">Editar</a>
         </td>
         <td>
             {{ Form::open(array('url' => 'categoria/' . $value->id, 'onsubmit' => 'return ConfirmDelete()'))}}

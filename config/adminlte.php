@@ -226,56 +226,56 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
-            'text' => 'Usuarios',
-            'url'  => 'user',
-            'icon'        => 'far fa-fw fa-user',
-        ],
-        [
-            'text' => 'categorias',
+            'text' => 'Categorias',
             'url'  => 'categoria',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-tags',
         ],
         [
-            'text' => 'produtos',
+            'text' => 'Produtos',
             'url'  => 'produto',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-boxes',
         ],
         [
-            'text' => 'clientes',
+            'text' => 'Clientes',
             'url'  => 'cliente',
-            'icon'        => 'far fa-fw fa-user',
+            'icon'        => 'fas fa-users',
         ],
         [
-            'text' => 'vendas',
+            'text' => 'Vendas',
             'url'  => 'vendas',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-shopping-cart',
         ],
         [
-            'text' => 'relatorios',
+            'text' => 'Vender',
+            'url'  => 'vender',
+            'icon'        => 'fas fa-cart-plus',
+        ],
+        [
+            'text' => 'Relatório',
             'url'  => 'relatorios',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-chart-line',
         ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
+        /*[
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
-        ],
+        ],*/
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Usuarios',
+            'url'  => 'user',
+            'icon'        => 'far fa-fw fa-user',
         ],
         [
             'text' => 'change_password',

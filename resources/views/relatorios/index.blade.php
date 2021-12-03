@@ -1,25 +1,22 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Somos "+" - Relatório')
 
 @section('content_header')
-
-    <h1>RELATÓRIO</h1>
-    
+    <h1>RELATORIO DE VENDAS</h1>
 @stop
 
 @section('content')
 
 <div class="top-nav">
     <ul class="nav pull-right">
-    <li><a href="{{ URL::to('relatoriosPDF/') }}" class="btn btn-success">
+    <li><a class="btn btn-success" href="{{ route('relatorios.indexPDF') }}">
     <i class=" fa fa-file-pdf-o"></i> Baixar Relatório
     </a></li>
     </ul>
 </div>
 
 
-@section('content')
 
  <section id="main-content">
     <section class="wrapper">
@@ -44,24 +41,20 @@
                             <tbody>
                             <tr>
                                 <th><i class="fa fa-shopping-basket"></i> Nome</th>
-                                <th><i class="	fa fa-calendar-check-o"></i> Date Criação</th> 
+                                <th><i class="	fa fa-calendar-check-o"></i> Data Criação</th> 
                                 <th><i class="	fa fa-money"></i> Preço</th>
                             </tr>
                             @foreach ($relatorios as $relatorio )
                             <tr>
-                               
-                                <td>{{ $relatorio->nome_produto }}</td>
-                                <td>{{ $relatorio->data_criacao }}</td>
+                                <td>{{ $relatorio->produto_id }}</td>
+                                <td>{{ $relatorio->created_at }}</td>
                                 <td>R$ {{ $relatorio->preco }}</td>                                
                             </tr> 
                             @endforeach 
-                            <td>
-                                <a href="{{ URL::to('relatorios/' . $value->id) }}" class="btn btn-info">Visualizar</a>
-                            </td>
                             <tr >
                                 <th style="background-color:#7A8B8B; color: white"></i> TOTAL</th>
                                 <td style="background-color:#7A8B8B;"></td>
-                                <td style="background-color:#7A8B8B; color:White">{{ $total }}<//td>                                
+                                <td style="background-color:#7A8B8B; color:White">R$ {{ $total }},00<//td>                                
                             </tr>                                                 
                            </tbody>
                         </table>
@@ -72,14 +65,24 @@
     </section>   
 </section>
 
-@endsection
-
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-<script> console.log('Hi!'); </script>
+    <script> console.log('Hi!'); </script>
 @stop
+
+@section('pdf')
+
+<div class="top-nav">
+    <ul class="nav pull-right">
+    <li><a class="btn btn-success" href="/relatoriosPDF">
+    <i class=" fa fa-file-pdf-o"></i> Baixar Relatório
+    </a></li>
+    </ul>
+</div>
+
+<@endsection

@@ -12,10 +12,9 @@
 
 
     <!-- botao criar -->
-    <a href="{{ URL::to('user/create') }}"><h2>Criar</h2></a>
+    <a href="{{ URL::to('user/create') }}" class="btn btn-primary">CRIAR</a>
 
-
-
+    
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
@@ -42,13 +41,13 @@
 
                 <tr>
                     <td>{{ $value->id }}</td>
-                    <td>{{ $value->nome }}</td>
+                    <td>{{ $value->name }}</td>
                     <td>{{ $value->email }}</td>
                     <td>
-                        <a href="{{ URL::to('user/' . $value->id) }}">Visualizar</a>
+                        <a href="{{ URL::to('user/' . $value->id) }}" class="btn btn-info">Visualizar</a>
                     </td>
                     <td>
-                        <a href="{{ URL::to('user/' . $value->id.'/edit') }}">Editar</a>
+                        <a href="{{ URL::to('user/' . $value->id.'/edit') }}" class="btn btn-warning">Editar</a>
                     </td>
                     <td>
                         {{ Form::open(array('url' => 'user/' . $value->id, 'onsubmit' => 'return ConfirmDelete()'))}}

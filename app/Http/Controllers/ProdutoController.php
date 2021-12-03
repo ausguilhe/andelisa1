@@ -46,23 +46,29 @@ class ProdutoController extends Controller
         $message = [
             'nome.required' => 'O campo nome é obrigatório',
             'nome.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
+            'codigo_barras.required' => 'O campo código de barras é obrigatório',
             'descricao.required' => 'O campo descrição é obrigatório',
             'categoria_id.required' => 'O campo categoria é obrigatório',
             'preco.required' => 'O campo preço é obrigatório',
+            'estoque.required' => 'O campo estoque é obrigatório',
         ];
 
         $validateData = $request->validate([
-            'nome'         => 'required|min:2',
-            'descricao'    => 'required',
-            'categoria_id' => 'required',
-            'preco'        => 'required',
+            'nome'          => 'required|min:2',
+            'codigo_barras' => 'required',
+            'descricao'     => 'required',
+            'categoria_id'  => 'required',
+            'preco'         => 'required',
+            'estoque'         => 'required',
         ], $message);
 
         $produto = new Produto;
         $produto->nome          =$request->nome;
+        $produto->codigo_barras =$request->codigo_barras;
         $produto->descricao     =$request->descricao;
         $produto->categoria_id  =$request->categoria_id;
         $produto->preco         =$request->preco;
+        $produto->estoque       =$request->estoque;
         $produto->save();
 
         return redirect()->route('produto.index')->with('message', 'Produto criado com sucesso');
@@ -106,20 +112,24 @@ class ProdutoController extends Controller
         $message = [
             'nome.required' => 'O campo nome é obrigatório',
             'nome.mim' => 'O campo nome precisa ter no mínimo :mim caracteres',
+            'codigo_barras.required' => 'O campo código de barras é obrigatório',
             'descricao.required' => 'O campo descrição é obrigatório',
             'preco.required' => 'O campo preço é obrigatório',
+            'estoque.required' => 'O campo estoque é obrigatório',
         ];
 
         $validateData = $request->validate([
             'nome'      => 'required|min:2',
             'descricao'  => 'required',
             'preco' => 'required',
+            'estoque' => 'required',
         ], $message);
 
         $produto = Produto::findOrFail($id);
         $produto->nome       =$request->nome;
         $produto->descricao  =$request->descricao;
         $produto->preco      =$request->preco;
+        $produto->estoque    =$request->estoque;
         $produto->save();
 
         return redirect()->route('produto.index')->with('message', 'Produto editado com sucesso');

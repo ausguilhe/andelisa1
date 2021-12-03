@@ -11,10 +11,12 @@
     @section('content')
 
     <p>ID:                          {{ $produto->id}}</p>
+    <p>Código barras:               {{ $produto->codigo_barras}}</p>
     <p>Categoria:                   {{ $produto->categoria->nome}}</p>
     <p>Nome:                        {{ $produto->nome}}</p>
     <p>Descrição:                   {{ $produto->descricao}}</p>
     <p>Preço:                       {{ $produto->preco}}</p>
+    <p>Estoque:                     {{ $produto->estoque}}</p>
     <p>Criação                      {{ Carbon\Carbon::parse($produto->create_at)->format('d/m/y H:i') }}</p>
     <p>Última modificação:          {{ Carbon\Carbon::parse($produto->update_at)->format('d/m/y H:i')}}</p>
     
