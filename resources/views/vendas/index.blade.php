@@ -1,78 +1,101 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Somos "+" - Vendas')
 
 @section('content_header')
 
-     
+    <div class="row">
+        <div class="col-12">
+            <h1>Vendas <i class="fa fa-list"></i></h1>
 @stop
 
-@section('content') 
+@section('content')
 
+@if (Session::has('message'))
+<div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
 
-<section id="main-content">
-    <section class="wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-cart-arrow-down"></i> Vendas</h3>
-                      
+<script>
+function ConfirmDelete() {
+    return confirm('Tem certeza que deseja excluir esse registro?');
+}
+</script>
 
-                <ol class="breadcrumb">
-                    <li><i class="fa fa-home"></i>Novo</li>
-                    <li><i class="fa fa-cart-arrow-down"></i>Vendas</li> 
-                </ol>
+           
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Ticket de venda</th>
+                        <th>Detalhes</th>
+                        <th>Eliminar</th>                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($vendas as $venda)
+                        <tr>
+                            <td>{{$venda->created_at}}</td>
+                            <td>{{$venda->cliente->nome}}</td>
+                            <td>R${{number_format($venda->total, 2)}}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{route('vendas.ticket', ["id"=>$venda->id])}}">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="{{route('vendas.show', ["id"=>$venda->id])}}">
+                                    <i class="fa fa-info"></i>
+                                </a>
+                            </td>
+                                <td>
+                                    <form action="{{route('vendas.destroy', [$venda])}}" method="post">
+                                        @method("delete")
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>    
+                                    </form>
+                                    
+                                </td>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        </div>
+    </div>
+@endsection
 
-        @if(!empty($mensagem))
-        <div class="alert alert-success">
-            {{ $mensagem }}
-        </div>
-        @endif
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+            
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+              
+{{--<td>
+    {{ Form::open(array('url' => 'vendas/' . $value->id, 'onsubmit' => 'return ConfirmDelete()'))}}
+    {{ Form::hidden('_method', 'DELETE') }}
+    {{ Form::submit('Excluir', array('class' => 'btn btn-danger'))}}
+    {{ Form::close() }}
+</td>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Tabela de Vendas
-                        </header>
-                        <table class="table table-striped table-advance table-hover">
-                            <tbody>
-                          
-                            <tr>
-                                <th><i class="	fa fa-plus-square-o"></i> Quantidade</th>                                 
-                                <th><i class="fa fa-shopping-basket"></i> Produto</th>
-                                <th><i class="fa fa-user"></i> Clientes</th>
-                                <th><i class="fa fa-calendar-check-o"></i> Criado em</th>
+<form action="{{route('vendas.destroy', [$venda])}}" method="post">
+    @method("delete")
+    @csrf
+    <button type="submit" class="btn btn-danger">
+        <i class="fa fa-trash"></i>
+    </button>    
+</form>
 
-                            @foreach ($vendas as $venda )
-                            <tr>
-                                <td>{{ $venda->numero_vendas }}</td>
-                                <td>{{ $venda->nome_produto  }}</td>
-                                <td>{{ $venda->nome_cliente  }}</td>
-                                <td>{{ $venda->data_criacao}}</td>                                 
-                                
-                            </tr> 
-                            @endforeach 
-
-                           </tbody>
-                        </table>
-                    </section>
-                </div>
-            </div>
-            <a class="btn btn-primary " href="{{ URL::to('vendas/create')}}" >Adicionar</a>
-    </section>                   
-</section>
-
-
-      @endsection
-
-    @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-    @stop
-        
-    @section('js')
-        <script> console.log('Hi!'); </script>
-    @stop
-
+                    <td>                
+                     <a class="btn btn-success" href="{{route('vendas.show', $venda)}}">
+                                    <i class="fa fa-info"></i>
+                                </a>
+                            </td>
+--}}

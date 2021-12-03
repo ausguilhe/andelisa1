@@ -6,8 +6,16 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenderController;
 use App\Http\Controllers\VendasController;
 use App\Http\Controllers\RelatoriosController;
+use App\Http\Controllers\RelatoriosPDFController;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+Use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +28,10 @@ use App\Http\Controllers\RelatoriosController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return redirect()->route('login');
 });
+
 
 Auth::routes();
 
@@ -84,36 +93,33 @@ Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update')
 
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-//
 
-Route::get('/relatorios', [RelatoriosController::class, 'index'])->name('relatorios.index');
+//-------------------------Vendas------------------------------------------------------------
 
-// VENDAS
-
+Route::get('/vendas/ticket', [VendasController::class, 'ticket'])->name('vendas.ticket');
+Route::resource('vendas', 'VendasController');
+        
 Route::get('/vendas', [VendasController::class, 'index'])->name('vendas.index');
 
-//Route::get('/vendas', 'VendasController@index')->name('listar_vendas');
-    
-Route::get('/vendas/create', [VendasController::class, 'create'])->name('vendas.create');
+Route::get('/venda/{id}', [VendasController::class, 'show'])->name('vendas.show');
+Route::delete('/venda/{id}', [VendasController::class, 'destroy'])->name('vendas.destroy');
 
-//Route::get('/vendas/criar', 'VendasController@create')->name('form_criar_vendas');
+Route::get('vendas/pdf/{venda}', [VendasController::class, 'pdf'])->name('vendas.pdf');
+Route::get('vendas/print/{venda}', [VendasController::class, 'print'])->name('vendas.print');
 
-Route::post('/vendas/create', [VendasController::class, 'store'])->name('vendas.store');
+//------------------------Vender------------------------------------------------------------------
 
-//Route::post('/vendas/criar', 'VendasController@store')->name('criar_venda');
-    
+Route::get('/vender', [VenderController::class, 'index'])->name('vender.index');
+Route::post('/produtoDevenda', [VenderController::class, 'agregarprodutovenda'])->name('agregarprodutovenda');
+Route::delete('/produtoDevenda', [VenderController::class, 'quitarprodutoDevenda'])->name('quitarprodutoDevenda');
+Route::post('/terminarOCancelarvenda', [VenderController::class, 'terminarOCancelarvenda'])->name('terminarOCancelarvenda');
 
 
 // RELATÓRIOS
-Route::get('/relatorios', [RelatoriosController::class, 'index'])->name('relatorios.index');
 
-//Route::get('/relatorios', 'RelatoriosController@index')->name('listar_relatorio');
+Route::get('/relatorios', [RelatoriosController::class, 'index'])->name('listar_relatorio');
 
 Route::get('/relatoriosPDF', [RelatoriosController::class, function(){
     $pdf = PDF::loadView('relatorios.indexPDF');
     return $pdf->download('relatorio.pdf');
 }])->name('relatorios.indexPDF');
-
-//Route::get('/relatoriosPDF', function(){
-    //$pdf = PDF::loadView('relatorios.indexPDF');
-    //return $pdf->download('relatorio.pdf');});

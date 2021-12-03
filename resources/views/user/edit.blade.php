@@ -22,8 +22,8 @@
 
     {{ Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'put')) }}
 
-    {{ Form::label('nome', 'Nome') }}
-    {{ Form::text('nome', $user->nome) }}
+    {{ Form::label('name', 'Nome') }}
+    {{ Form::text('name', $user->name) }}
     <br/>
     {{ Form::label('email', 'E-mail') }}
     {{ Form::text('email', $user->email) }}

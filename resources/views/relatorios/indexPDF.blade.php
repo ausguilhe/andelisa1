@@ -4,8 +4,8 @@ use App\Models\Venda;
 use App\Models\Produto;
 
  //nome-data-preço
- $relatorios = Venda::join('produtos', 'vendas.produto_id', '=', 'produtos.id')
- ->select('produtos.nome as nome_produto','vendas.data_criacao', 'produtos.preco')
+ $relatorios = Venda::join('produtos', 'vendas.id_cliente', '=', 'produtos.id')
+ ->select('produtos.nome as produto_id','vendas.created_at', 'produtos.preco')
  ->get();
 
 
@@ -59,8 +59,8 @@ use App\Models\Produto;
     <tbody> 
    @foreach ($relatorios as $relatorio )   
     <tr>
-    <td>{{ $relatorio->nome_produto }}</td>
-    <td>{{ $relatorio->data_criacao }}</td>
+    <td>{{ $relatorio->produto_id }}</td>
+    <td>{{ $relatorio->created_at }}</td>
     <td>R$ {{ $relatorio->preco }}</td>      
     </tr> 
     @endforeach

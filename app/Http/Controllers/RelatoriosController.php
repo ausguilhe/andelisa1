@@ -13,8 +13,8 @@ class RelatoriosController extends Controller
     public function index(Request $request){   //listrar as vendas e seus relacionamtos
 
        //nome-data-preço
-        $relatorios = Venda::join('produtos', 'vendas.produto_id', '=', 'produtos.id')
-        ->select('produtos.nome as nome_produto','vendas.data_criacao', 'produtos.preco')
+        $relatorios = Venda::join('produtos', 'vendas.id_cliente', '=', 'produtos.id')
+        ->select('produtos.nome as produto_id','vendas.created_at', 'produtos.preco')
         ->get();
 
         $total = 0;

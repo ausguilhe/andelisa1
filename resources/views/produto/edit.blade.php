@@ -29,6 +29,10 @@
     <br/>
 </div>
 <div class="mb-3">
+    <label for="" class="form-label">Código barras</label>
+    <input id="codigo_barras" name="codigo_barras" type="number" class="form-control" value="{{$produto->codigo_barras}}">    
+</div>
+<div class="mb-3">
     <label for="" class="form-label">Nome</label>
     <input id="nome" name="nome" type="text" class="form-control" value="{{$produto->nome}}">    
 </div>

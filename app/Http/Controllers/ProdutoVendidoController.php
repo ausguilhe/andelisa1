@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VendaDetalhe;
 use Illuminate\Http\Request;
 
-class VendaDetalheController extends Controller
+class ProdutoVendidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class VendaDetalheController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\VendaDetalhe  $vendaDetalhe
+     * @param  \App\Models\produtoVendido  $produtoVendido
      * @return \Illuminate\Http\Response
      */
-    public function show(VendaDetalhe $vendaDetalhe)
+    public function show(produtoVendido $produtoVendido)
     {
         //
     }
@@ -52,10 +51,10 @@ class VendaDetalheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\VendaDetalhe  $vendaDetalhe
+     * @param  \App\Models\produtoVendido  $produtoVendido
      * @return \Illuminate\Http\Response
      */
-    public function edit(VendaDetalhe $vendaDetalhe)
+    public function edit(produtoVendido $produtoVendido)
     {
         //
     }
@@ -64,10 +63,10 @@ class VendaDetalheController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\VendaDetalhe  $vendaDetalhe
+     * @param  \App\Models\produtoVendido  $produtoVendido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VendaDetalhe $vendaDetalhe)
+    public function update(Request $request, produtoVendido $produtoVendido)
     {
         //
     }
@@ -75,11 +74,12 @@ class VendaDetalheController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\VendaDetalhe  $vendaDetalhe
+     * @param  \App\Models\produtoVendido  $produtoVendido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VendaDetalhe $vendaDetalhe)
+    public function destroy(produtoVendido $produtoVendido)
     {
         //
     }
 }
+
